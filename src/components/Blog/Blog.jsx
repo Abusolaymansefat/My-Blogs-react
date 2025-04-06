@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaBookmark } from "react-icons/fa";
 
-const Blog = ({blog}) => {
+const Blog = ({blog, handleBookMark, handleMarkAsRead}) => {
+    // console.log(handleBookMark)
     // console.log(props.blog)
     // const {blog} = props
-    console.log(blog)
+    // console.log(blog)
     return (
         <div>
             {/* <h1>{blog.id}</h1> */}
@@ -19,7 +20,7 @@ const Blog = ({blog}) => {
                 <div className="author flex justify-between items-center w-full"> 
                     <h3>{blog.author}</h3>
                     <img className='w-16 rounded-full' src={blog.author_img} />
-                    <FaBookmark size={25}/>
+                    <button onClick={() =>handleBookMark(blog)}><FaBookmark  size={25}/></button>
                 </div>
 
                     <h2 className="card-title">{blog.title}</h2>
@@ -27,12 +28,12 @@ const Blog = ({blog}) => {
 
                     <div className="flex gap-10">
                     {
-                        blog.hashtags.map((has) => <p>{has}</p>)
+                        blog.hashtags.map((has) => <p key={has}>{has}</p>)
 
                     }
                     </div>
                     <div className="card-actions flex justify-end w-full mt-4">
-                        <button className="btn btn-primary">make as read</button>
+                        <button onClick={() => handleMarkAsRead(blog.reading_time, blog.id)} className="btn btn-primary">make as read</button>
                     </div>
 
 
